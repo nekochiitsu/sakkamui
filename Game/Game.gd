@@ -34,6 +34,7 @@ func initialize_players():
 		if !(data is Dictionary):
 			print("Cannot resolve online players initianisation !")
 			print("\tERROR: !(data is Dictionary): data = ", data)
+			call_deferred("initialize_players")
 			return
 		if !("Game" in data.keys()):
 			return
