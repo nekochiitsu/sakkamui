@@ -47,15 +47,15 @@ func _process(delta: float) -> void:
 		look_at(get_global_mouse_position())
 		if Input.is_action_pressed("move"):
 			rcp_change_target_position(get_global_mouse_position())
+		move(delta)
 	else:
 		online_interpolated_process()
-	move(delta)
 
 
 func _physics_process(_delta: float) -> void:
 	if Network.is_master(self):
-		online["target_position"] = target_position
 		online["interpolated"]["position"] = position
+		online["interpolated"]["rotation"] = position
 	else:
 		remoted_function_execution()
 
