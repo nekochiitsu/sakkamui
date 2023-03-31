@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://ekfq3bjljydn"]
+
+[ext_resource type="Script" path="res://Game/Game.gd" id="1_het7u"]
+[ext_resource type="PackedScene" uid="uid://dhkyuh1bsis83" path="res://Game/Tilemap.tscn" id="2_qcq3w"]
+
+[sub_resource type="Environment" id="Environment_v6kn5"]
+background_mode = 3
+tonemap_mode = 3
+tonemap_exposure = 0.7
+glow_blend_mode = 0
+
+[node name="Game" type="Node"]
+script = ExtResource("1_het7u")
+
+[node name="Players" type="Node" parent="."]
+unique_name_in_owner = true
+
+[node name="World" type="Node" parent="."]
+
+[node name="Tilemap" parent="World" instance=ExtResource("2_qcq3w")]
+z_index = -1
+
+[node name="Environment" type="WorldEnvironment" parent="World"]
+environment = SubResource("Environment_v6kn5")
