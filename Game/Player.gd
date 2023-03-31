@@ -55,7 +55,7 @@ func _process(delta: float) -> void:
 func _physics_process(_delta: float) -> void:
 	if Network.is_master(self):
 		online["interpolated"]["position"] = position
-		online["interpolated"]["rotation"] = position
+		online["interpolated"]["rotation"] = rotation
 	else:
 		remoted_function_execution()
 
