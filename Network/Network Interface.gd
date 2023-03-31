@@ -137,7 +137,6 @@ func _request_completed(result: int, _response: int, _headers: PackedStringArray
 				request_action.call(body)
 				request_action = pass_request_action
 			request_delay += (Tools.time - request_time) * .1
-			request_time = Tools.time
 			request_delay /= 1.1
 	else:
 		print("The connection with the server has failed !")

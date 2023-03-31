@@ -100,9 +100,10 @@ func remoted_function_execution() -> void:
 
 func online_interpolated_process() -> void:
 	var delay = online["delay"] + (Network.Getter.request_delay / 2)
-	var interpolation = clamp((Tools.time - Network.Getter.request_time) / delay, 0, 1)
-	for key in online["interpolated"].keys():
-		set(key, 
-			(1 - interpolation) * last_online_interpolated_variables[key] + 
-			interpolation       * online["interpolated"][key]
-		)
+	var interpolation = (Tools.time - Network.Getter.request_time) / delay
+	if 0 < interpolation and interpolation < 1:
+		for key in online["interpolated"].keys():
+			set(key, 
+				(1 - interpolation) * last_online_interpolated_variables[key] + 
+				interpolation       * online["interpolated"][key]
+			)
