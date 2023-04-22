@@ -46,10 +46,9 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if Network.is_master(self):
-		print(Input.get_joy_axis(0, 0))
+		look_at(get_global_mouse_position())
 		if Input.is_action_pressed("move"):
 			rcp_change_target_position(get_global_mouse_position())
-			Input.warp_mouse(get_window().size / 2)
 		move(delta)
 	else:
 		online_interpolated_process()
@@ -112,6 +111,6 @@ func online_interpolated_process() -> void:
 	if 0 < interpolation and interpolation < 1:
 		for key in online["interpolated"].keys():
 			set(key, 
-				(1 - interpolation) * last_online_interpolated_variables[key] + 
-				interpolation       * online["interpolated"][key]
+				(get(key) * 9 + ((1 - interpolation) * last_online_interpolated_variables[key] + 
+				interpolation       * online["interpolated"][key]))/10
 			)

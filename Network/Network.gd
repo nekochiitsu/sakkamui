@@ -49,10 +49,15 @@ func is_master(node):
 
 
 func initialize_network():
-	for type in [TYPE_GETTER, TYPE_SETTER]:
-		var NetworkSyncronizer = _NetworkInterface.instantiate()
-		NetworkSyncronizer.type = type
-		NetworkSyncronizer.name = "Network Syncronizer " + str(type)
-		Tools.Game.add_child(NetworkSyncronizer)
-	Getter = Tools.Game.get_node("Network Syncronizer " + str(TYPE_GETTER))
-	Setter = Tools.Game.get_node("Network Syncronizer " + str(TYPE_SETTER))
+	var NetworkSyncronizer = _NetworkInterface.instantiate()
+	NetworkSyncronizer.type = TYPE_SYNCHONIZER
+	NetworkSyncronizer.name = "Network Syncronizer"
+	Tools.Game.add_child(NetworkSyncronizer)
+	Getter = NetworkSyncronizer
+	#for type in [TYPE_GETTER, TYPE_SETTER]:
+	#	var NetworkSyncronizer = _NetworkInterface.instantiate()
+	#	NetworkSyncronizer.type = type
+	#	NetworkSyncronizer.name = "Network Syncronizer " + str(type)
+	#	Tools.Game.add_child(NetworkSyncronizer)
+	#Getter = Tools.Game.get_node("Network Syncronizer " + str(TYPE_GETTER))
+	#Setter = Tools.Game.get_node("Network Syncronizer " + str(TYPE_SETTER))
