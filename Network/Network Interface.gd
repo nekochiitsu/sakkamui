@@ -146,11 +146,13 @@ func _request_completed(result: int, _response: int, _headers: PackedStringArray
 # Select -> /part/ <- and press CTRL+D to jump on the next one !
 # /automatic_request_calling/
 
-
+var lrd = request_delay
 func online_sync():
+	request_delay = lrd
 	new_request("get", 1)
 	request_action = \
 	func f(data):
+		lrd = request_delay
 		var request_content = recursive_automatic_online_variable_getter(Tools.Game.get_node("Players/" +Network.ID))
 		new_request("set", 1, request_content)
 		recursive_automatic_online_variable_setter(data)
