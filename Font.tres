@@ -1,0 +1,5 @@
+[gd_resource type="SystemFont" format=3 uid="uid://dwawr3pgwvyq0"]
+
+[resource]
+font_names = PackedStringArray("Calibri")
+multichannel_signed_distance_field = true

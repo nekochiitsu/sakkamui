@@ -26,13 +26,14 @@ var is_processing: bool = false
 
 
 func _physics_process(_delta):
-	if int(Tools.time / 5) != Tools.ticks[5] \
-			and (Getter.request_delay + Setter.request_delay) > .0001:
-		print("Get Delay: ", int(Getter.request_delay * 1000), "ms")
-		print("Set Delay: ", int(Setter.request_delay * 1000), "ms")
-		for Player in get_node("../Game/Players").get_children():
-			if Player.name != ID:
-				print(Player.name + "'s Set Delay: ", int(Player.online["delay"] * 1000), "ms")
+	if Getter and Setter:
+		if int(Tools.time / 5) != Tools.ticks[5] \
+				and (Getter.request_delay + Setter.request_delay) > .0001:
+			print("Get Delay: ", int(Getter.request_delay * 1000), "ms")
+			print("Set Delay: ", int(Setter.request_delay * 1000), "ms")
+			for Player in get_node("../Game/Players").get_children():
+				if Player.name != ID:
+					print(Player.name + "'s Set Delay: ", int(Player.online["delay"] * 1000), "ms")
 
 
 # Select -> /part/ <- and press CTRL+D to jump on the next one !

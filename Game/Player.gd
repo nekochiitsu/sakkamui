@@ -38,15 +38,18 @@ func _ready() -> void:
 		Camera.position_smoothing_enabled = true
 		add_child(Camera)
 		Camera.make_current()
-		for _i in range(5):
+		for _i in range(1):
 			add_child(load("res://Game/Player_Light.tscn").instantiate())
+			get_child(get_child_count()-1).position = Vector2((randf() - 0.5), (randf() - 0.5))
+			print(get_child(get_child_count()-1).position)
 
 
 func _process(delta: float) -> void:
 	if Network.is_master(self):
-		look_at(get_global_mouse_position())
+		print(Input.get_joy_axis(0, 0))
 		if Input.is_action_pressed("move"):
 			rcp_change_target_position(get_global_mouse_position())
+			Input.warp_mouse(get_window().size / 2)
 		move(delta)
 	else:
 		online_interpolated_process()
@@ -54,6 +57,11 @@ func _process(delta: float) -> void:
 
 func _physics_process(_delta: float) -> void:
 	if Network.is_master(self):
+		var tx = (get_global_mouse_position() - position).normalized()
+		if !tx.length():
+			tx = transform.x
+		transform.x = tx
+		transform.y = transform.x.rotated(PI/2)
 		online["interpolated"]["position"] = position
 		online["interpolated"]["rotation"] = rotation
 	else:

@@ -1,0 +1,11 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://1fbmjyvjxh2a"]
+
+[ext_resource type="SystemFont" uid="uid://dwawr3pgwvyq0" path="res://Font.tres" id="1_0jyl2"]
+
+[resource]
+Button/fonts/font = ExtResource("1_0jyl2")
+LineEdit/fonts/font = ExtResource("1_0jyl2")
+RichTextLabel/fonts/normal_font = ExtResource("1_0jyl2")
+TabContainer/fonts/font = ExtResource("1_0jyl2")
+TextEdit/fonts/font = ExtResource("1_0jyl2")
+Tree/fonts/font = ExtResource("1_0jyl2")

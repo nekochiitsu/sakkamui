@@ -1,2 +1,12 @@
+LineEdit
+SpinBox
+TextEdit
+Button
 PointLight2D
+ColorRect
+WorldEnvironment
+Camera2D
+MultiplayerSpawner
+MultiplayerSynchronizer
+Node2D
 DirectionalLight2D

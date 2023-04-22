@@ -1,18 +1,23 @@
-[gd_scene load_steps=3 format=3 uid="uid://didja0ghet5qd"]
+[gd_scene load_steps=4 format=3 uid="uid://didja0ghet5qd"]
 
-[sub_resource type="Gradient" id="Gradient_fdm5t"]
-offsets = PackedFloat32Array(0)
+[sub_resource type="Gradient" id="Gradient_44yjy"]
+offsets = PackedFloat32Array(1)
 colors = PackedColorArray(1, 1, 1, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_71bvp"]
-gradient = SubResource("Gradient_fdm5t")
-width = 1
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_qb5jo"]
+noise_type = 5
+fractal_type = 0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_psrc0"]
+width = 2432
+height = 2432
+color_ramp = SubResource("Gradient_44yjy")
+noise = SubResource("FastNoiseLite_qb5jo")
 
 [node name="PointLight2D" type="PointLight2D"]
-scale = Vector2(2500, 2500)
 color = Color(0, 0, 0, 1)
-energy = 16.0
 blend_mode = 1
 shadow_enabled = true
 shadow_color = Color(1, 1, 1, 1)
-texture = SubResource("GradientTexture1D_71bvp")
+shadow_filter_smooth = 0.5
+texture = SubResource("NoiseTexture2D_psrc0")

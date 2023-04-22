@@ -149,12 +149,10 @@ func _request_completed(result: int, _response: int, _headers: PackedStringArray
 
 func online_sync():
 	new_request("get", 1)
-	print("Set Delay: ", int(request_delay * 1000), "ms")
 	request_action = \
 	func f(data):
 		var request_content = recursive_automatic_online_variable_getter(Tools.Game.get_node("Players/" +Network.ID))
 		new_request("set", 1, request_content)
-		print("Get Delay: ", int(request_delay * 1000), "ms")
 		recursive_automatic_online_variable_setter(data)
 
 
