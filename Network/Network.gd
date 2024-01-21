@@ -16,7 +16,7 @@ const TYPE_SYNCHONIZER: int = 1
 const TYPE_GETTER:      int = 2
 const TYPE_SETTER:      int = 3
 
-var   ID:            String = OS.get_unique_id()
+var   ID:            String = OS.get_unique_id()# + str(OS.get_process_id())
 var   SERVER:        String = "http://tremisabdoul.go.yj.fr/game/main.php"
 
 var is_processing: bool = false

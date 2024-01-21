@@ -14,7 +14,13 @@ extends Node
 func _ready():
 	Tools.Game = self
 	Network.initialize_network()
-	initialize_players()
+	if 1:
+		initialize_players()
+	else:
+		Network.Getter.new_request("new", 1)
+		Network.Getter.request_action = \
+		func f(data):
+			initialize_players()
 
  
 # Select -> /part/ <- and press CTRL+D to jump on the next one !
@@ -37,9 +43,9 @@ func initialize_players():
 			call_deferred("initialize_players")
 			return
 		if !("Game" in data.keys()):
-			return
+			data["Game"] = {}
 		if !("Players" in data["Game"].keys()):
-			return
+			data["Game"]["Players"] = {}
 		var Player
 		for player_name in data["Game"]["Players"].keys():
 			if player_name != Network.ID:

@@ -1,4 +1,4 @@
 res://Game/Game.tscn
-res://Game/Player.gd
-res://Network/Network.gd
-res://Network/Network Interface.gd
+res://Game/CharacterBody2D.gd
+res://character_body_2d.tscn
+res://Game/Tilemap.tscn

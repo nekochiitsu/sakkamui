@@ -1,3 +1,5 @@
+class_name NetworkInterface
+
 extends HTTPRequest
 
 # Parts:
@@ -134,8 +136,9 @@ func _request_completed(result: int, _response: int, _headers: PackedStringArray
 			if request_action != pass_request_action \
 					and !request_action.is_null() \
 					and request_action is Callable:
-				request_action.call(body)
+				var function: Callable = request_action
 				request_action = pass_request_action
+				function.call(body)
 			request_delay += (Tools.time - request_time) * .1
 			request_delay /= 1.1
 	else:
@@ -146,16 +149,15 @@ func _request_completed(result: int, _response: int, _headers: PackedStringArray
 # Select -> /part/ <- and press CTRL+D to jump on the next one !
 # /automatic_request_calling/
 
-var lrd = request_delay
+
 func online_sync():
-	request_delay = lrd
 	new_request("get", 1)
 	request_action = \
 	func f(data):
-		lrd = request_delay
 		var request_content = recursive_automatic_online_variable_getter(Tools.Game.get_node("Players/" +Network.ID))
 		new_request("set", 1, request_content)
-		recursive_automatic_online_variable_setter(data)
+		if data is Dictionary:
+			recursive_automatic_online_variable_setter(data)
 
 
 func online_get():

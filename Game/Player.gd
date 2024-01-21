@@ -30,6 +30,7 @@ var last_online_interpolated_variables: Dictionary = {}
 
 
 func _ready() -> void:
+	print(name)
 	for variable_name in online["interpolated"]:
 		last_online_interpolated_variables[variable_name] = online["interpolated"][variable_name]
 	if Network.is_master(self):
@@ -111,6 +112,6 @@ func online_interpolated_process() -> void:
 	if 0 < interpolation and interpolation < 1:
 		for key in online["interpolated"].keys():
 			set(key, 
-				(get(key) * 9 + ((1 - interpolation) * last_online_interpolated_variables[key] + 
-				interpolation       * online["interpolated"][key]))/10
+				(get(key) * 4 + online["interpolated"][key] + ((1 - interpolation) * last_online_interpolated_variables[key] + 
+				interpolation       * online["interpolated"][key]))/6
 			)
